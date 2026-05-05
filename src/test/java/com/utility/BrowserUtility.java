@@ -286,7 +286,10 @@ public class BrowserUtility {
 	}
 
 	public void quit() {
-		driver.get().quit();
+		if(driver.get() != null) {
+			driver.get().close();
+			driver.get().quit();
+		}
 	}
 
 }

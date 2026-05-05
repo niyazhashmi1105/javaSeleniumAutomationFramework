@@ -12,7 +12,7 @@ import com.ui.pages.MyAccountPage;
 public class SearchProductTest extends TestBase {
 
 	private MyAccountPage myAccountPage;
-	private static final String SEARCH_TERM = "Mens Wallet";
+	private static final String SEARCH_TERM = "Printed Chiffon Dress";
 
 	@BeforeMethod(description = "Valid user logs into the application")
 	public void setup() {
