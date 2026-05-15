@@ -27,7 +27,7 @@ public final class MyAccountPage extends BrowserUtility {
 		return searchResultPage;
 	}
 
-	public AddressPage goToAddAddressPage() {
+	public AddressPage goToAddressPage() {
 		clickOn(ADD_NEW_ADDRESS_LINK_LOCATOR);
 
 		AddressPage addressPage = new AddressPage(getDriver());

@@ -60,7 +60,7 @@ public class AddressPOJO {
 		return otherInformation;
 	}
 
-	public String getAddressAlias() {
+	public String getAddressTitle() {
 		return addressAlias;
 	}
 

@@ -36,7 +36,7 @@ public class AddressPage extends BrowserUtility {
 		enterText(MOBILE_NUMBER_TEXTBOX_LOCATOR, addressPOJO.getMobileNumber());
 		enterText(OTHER_INFORMATION_TEXTAREA_LOCATOR, addressPOJO.getOtherInformation());
 		clearText(ADDRESS_ALIAS_TEXTBOX_LOCATOR);
-		enterText(ADDRESS_ALIAS_TEXTBOX_LOCATOR, addressPOJO.getAddressAlias());
+		enterText(ADDRESS_ALIAS_TEXTBOX_LOCATOR, addressPOJO.getAddressTitle());
 		selectFromDropDown(STATE_DROPDOWN_LOCATOR, addressPOJO.getState());
 		clickOn(SAVE_ADDRESS_BUTTON_LOCATOR);
 		String newAddress = getVisibleText(ADDRESS_HEADING);

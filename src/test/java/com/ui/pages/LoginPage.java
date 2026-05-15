@@ -14,23 +14,20 @@ public class LoginPage extends BrowserUtility {
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 	public MyAccountPage doLoginWith(String emailAddress, String password) {
 		enterText(EMAIL_TEXT_BOX_LOCATOR, emailAddress);
 		enterText(PASSWORD_TEXT_BOX_LOCATOR, password);
 		clickOn(SUBMIT_BUTTON_LOCATOR);
-		MyAccountPage myAccountPage = new MyAccountPage(getDriver());
-		return myAccountPage;
+        return new MyAccountPage(getDriver());
 	}
 
 	public LoginPage doLoginWithInvalidCredentials(String emailAddress, String password) {
 		enterText(EMAIL_TEXT_BOX_LOCATOR, emailAddress);
 		enterText(PASSWORD_TEXT_BOX_LOCATOR, password);
 		clickOn(SUBMIT_BUTTON_LOCATOR);
-		LoginPage loginPage = new LoginPage(getDriver());
-		return loginPage;
+		return new LoginPage(getDriver());
 	}
 
 	public String getErrorMessage() {

@@ -2,6 +2,7 @@ package com.ui.listeners;
 
 import java.util.Arrays;
 
+import com.utility.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -14,10 +15,10 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.ui.tests.TestBase;
 import com.utility.BrowserUtility;
 import com.utility.ExtentReporterUtility;
-import com.utility.LoggerUtlity;
+
 
 public class TestListener implements ITestListener {
-	Logger logger = LoggerUtlity.getLogger(this.getClass());
+	Logger logger = LoggerUtility.getLogger(this.getClass());
 
 	ExtentSparkReporter extentSparkReporter;
 	ExtentReports extentReports;

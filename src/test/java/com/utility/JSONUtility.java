@@ -11,6 +11,7 @@ import com.ui.pojo.Environment;
 
 public class JSONUtility {
 
+	private JSONUtility(){}
 	public static Environment readJSON(Env env) {
 
 		Gson gson = new Gson();
@@ -19,7 +20,6 @@ public class JSONUtility {
 		try {
 			fileReader = new FileReader(jsonFile);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Config config = gson.fromJson(fileReader, Config.class);

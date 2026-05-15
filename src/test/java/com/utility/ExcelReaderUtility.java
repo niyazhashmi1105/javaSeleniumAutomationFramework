@@ -15,11 +15,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.ui.pojo.User;
 
 public class ExcelReaderUtility {
+	private ExcelReaderUtility(){}
 	public static Iterator<User> readExcelFile(String fileName) {
 
 		File xlsxFile = new File(System.getProperty("user.dir") + "//testData//" + fileName);
 
-		XSSFWorkbook xssfWorkbook = null;
+		XSSFWorkbook xssfWorkbook;
 		Row row;
 		Cell emailAddressCell;
 		Cell passwordCell;
@@ -29,7 +30,7 @@ public class ExcelReaderUtility {
 		XSSFSheet xssfSheet;
 		try {
 			xssfWorkbook = new XSSFWorkbook(xlsxFile);
-			userList = new ArrayList<User>();
+			userList = new ArrayList<>();
 			xssfSheet = xssfWorkbook.getSheet("LoginTestData");
 			rowIterator = xssfSheet.iterator();
 			rowIterator.next();

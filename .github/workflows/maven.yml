@@ -1,12 +1,15 @@
-name: Test Automation WorkFlow
-
+name: Test Automation Workflow
 on:
   workflow_dispatch:
-   
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
+
+permissions:
+  contents: write      # REQUIRED for pushing to gh-pages
+  pages: write         # REQUIRED for GitHub Pages
+  id-token: write
 
 jobs:
   build:
@@ -14,80 +17,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-    - uses: actions/checkout@v4
-    
-    - name: Set up JDK 11
-      uses: actions/setup-java@v4
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-        
-    - name: Running Test Automation Framework with Maven
-      run: mvn test -X -Dbrowser=chrome -DisLambdaTest=false -DisHeadless=true
-     
-    - name: Upload  Test logs
-      if: always()
-      uses: actions/upload-artifact@v4.4.3
-      with:
-       name: Test logs
-       path: logs/
+      - uses: actions/checkout@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Running Test Automation Framework with Maven
+        run: mvn test -X -Dbrowser=chrome -DisLambdaTest=true -DisHeadLess=false
 
-    - name: Upload Screenshots as Artifacts
-      if: always()
-      uses: actions/upload-artifact@v4.4.3
-      with:
-        name: screenshots
-        path: screenshots/
+      - name: Upload  Test logs
+        if: always()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: Test logs
+          path: logs/
 
-    - name: Upload HTML Report as Artifact
-      if: always()
-      uses: actions/upload-artifact@v4.4.3
-      with:
-        name: html-report
-        path: report.html
-       
-    - name: Test Execution Status
-      if: always()
-      run: echo "Test Execution Completed"
+      - name: Upload Screenshots as Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: screenshots
+          path: screenshots/
 
-    - name: Copy Report to gh-pages Folder
-      if: always()
+      - name: Upload HTML Report as Artifact
+        if: always()
+        uses: actions/upload-artifact@v4.4.3
+        with:
+          name: html-report
+          path: report.html
 
-      run: |
-        mkdir -p public/extent-reports
-        cp -R report.html  public/extent-reports/
-        cp -R screenshots/ public/extent-reports/screenshots/
-        ls -l
+      - name: Test Execution Status
+        if: always()
+        run: echo "Test Execution Completed"
 
-    - name: Deploy 🚀
-      if: always()
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: public/extent-reports/
-        token: ${{ secrets.PAT1234 }}
-        clean: true
-       
+      - name: Copy Report to gh-pages Folder
+        if: always()
 
+        run: |
+          mkdir -p public/extent-reports
+          cp -R report.html  public/extent-reports/
+          cp -R screenshots/ public/extent-reports/screenshots/
+          ls -l
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-  
+      - name: Deploy
+        if: always()
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: public/extent-reports/
+          token: ${{ secrets.PAT }}
+          clean: true

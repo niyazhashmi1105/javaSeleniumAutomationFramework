@@ -2,6 +2,7 @@ package com.ui.pages;
 
 import static com.constants.Env.QA;
 
+import com.utility.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import com.constants.Browser;
 import com.utility.BrowserUtility;
 import com.utility.JSONUtility;
-import com.utility.LoggerUtlity;
+
 
 public final class HomePage extends BrowserUtility {
-	Logger logger = LoggerUtlity.getLogger(this.getClass());
+	Logger logger = LoggerUtility.getLogger(this.getClass());
 
 	private static final By SIGN_IN_LINK_LOCATOR = By.xpath("//a[contains(text(),\"Sign\")]");
 

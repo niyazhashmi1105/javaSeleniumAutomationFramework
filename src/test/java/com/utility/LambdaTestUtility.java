@@ -9,12 +9,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class LambdaTestUtlity {
+public class LambdaTestUtility {
 	private static final String HUB_URL = "https://hub.lambdatest.com/wd/hub";
-	private static ThreadLocal<WebDriver> driverLocal = new ThreadLocal<WebDriver>();;
-	private static ThreadLocal<DesiredCapabilities> capabilitiesLocal = new ThreadLocal<DesiredCapabilities>();
+	private static ThreadLocal<WebDriver> driverLocal = new ThreadLocal<>();
+	private static ThreadLocal<DesiredCapabilities> capabilitiesLocal = new ThreadLocal<>();
 
-	public static WebDriver intializeLambdaTestSession(String browser, String testName) {
+	private LambdaTestUtility(){}
+	public static WebDriver initializeLambdaTestSession(String browser, String testName) {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("browserName", browser);
 		capabilities.setCapability("browserVersion", "147.0");
@@ -32,18 +33,18 @@ public class LambdaTestUtlity {
 		try {
 			driver = new RemoteWebDriver(new URL(HUB_URL), capabilitiesLocal.get());
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		driverLocal.set(driver);
-
 		return driverLocal.get();
 	}
 
 	public static void quitSession() {
 		if (driverLocal.get() != null) {
 			driverLocal.get().quit();
+			driverLocal.remove();
+			capabilitiesLocal.remove();
 		}
 	}
 }

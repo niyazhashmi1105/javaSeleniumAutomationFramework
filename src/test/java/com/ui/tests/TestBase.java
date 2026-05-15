@@ -1,5 +1,7 @@
 package com.ui.tests;
 
+import com.utility.LambdaTestUtility;
+import com.utility.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
@@ -11,12 +13,11 @@ import org.testng.annotations.Parameters;
 import com.constants.Browser;
 import com.ui.pages.HomePage;
 import com.utility.BrowserUtility;
-import com.utility.LambdaTestUtlity;
-import com.utility.LoggerUtlity;
+
 
 public class TestBase {
 	protected HomePage homePage;
-	Logger logger = LoggerUtlity.getLogger(this.getClass());
+	Logger logger = LoggerUtility.getLogger(this.getClass());
 	private boolean isLambdaTest;
 
 	@BeforeMethod(description = "Load the Homepage of the website")
@@ -29,7 +30,7 @@ public class TestBase {
 		WebDriver lambdaDriver;
 		if (isLambdaTest) {
 
-			lambdaDriver = LambdaTestUtlity.intializeLambdaTestSession("chrome", result.getMethod().getMethodName());
+			lambdaDriver = LambdaTestUtility.initializeLambdaTestSession("chrome", result.getMethod().getMethodName());
 			homePage = new HomePage(lambdaDriver);
 
 		} else {
@@ -48,7 +49,7 @@ public class TestBase {
 	public void tearDown() {
 
 		if (isLambdaTest) {
-			LambdaTestUtlity.quitSession(); // quit or close the browsersession on LT
+			LambdaTestUtility.quitSession(); // quit or close the browsersession on LT
 		} else {
 			homePage.quit(); // local
 		}

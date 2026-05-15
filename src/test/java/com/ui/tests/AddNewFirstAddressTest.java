@@ -14,16 +14,16 @@ public class AddNewFirstAddressTest extends TestBase {
 	private MyAccountPage myAccountPage;
 	private AddressPOJO address;
 
-	@BeforeMethod(description = "Valid First Time user logs into the application")
-	public void setup() {
-		myAccountPage = homePage.goToLoginPage().doLoginWith("bakomam596@skrak.com", "password");
+	@BeforeMethod(description = "Verify user log into the application")
+	public void setUp(){
+		myAccountPage = homePage.goToLoginPage().doLoginWith("niyaz.hashmi@rediffmail.com","P@ssw0rd");
 		address = FakeAddressUtility.getFakeAddress();
 	}
 
 	@Test
-	public void addNewAddress() {
-		String newAddress = myAccountPage.goToAddAddressPage().saveAddress(address);
-		Assert.assertEquals(newAddress, address.getAddressAlias().toUpperCase());
+	public void addNewFirstAddress(){
+		String actualText = myAccountPage.goToAddressPage().saveAddress(address);
+		Assert.assertEquals(actualText,address.getAddressTitle().toUpperCase());
 	}
 
 }

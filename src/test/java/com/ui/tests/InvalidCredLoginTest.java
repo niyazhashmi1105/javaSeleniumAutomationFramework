@@ -2,17 +2,16 @@ package com.ui.tests;
 
 import static org.testng.Assert.assertEquals;
 
+import com.utility.LoggerUtility;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import com.utility.LoggerUtlity;
 
 
 @Listeners({ com.ui.listeners.TestListener.class })
 public class InvalidCredLoginTest extends TestBase {
 
-	Logger logger = LoggerUtlity.getLogger(this.getClass());
+	Logger logger = LoggerUtility.getLogger(this.getClass());
 	private static final String INVALID_EMAIL_ADDRESS = "jatinvsharma@gmail.com";
 	private static final String INVALID_PASSWORD = "Qwerty1234!";
 

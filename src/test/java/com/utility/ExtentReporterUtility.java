@@ -6,7 +6,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentReporterUtility {
 	private static ExtentReports extentReports;
-	private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
+	private static final ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
+	private ExtentReporterUtility(){}
 
 	public static void setupSparkReporter(String reportName) {
 		ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(
