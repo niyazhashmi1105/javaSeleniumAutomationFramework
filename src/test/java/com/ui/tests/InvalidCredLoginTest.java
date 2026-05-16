@@ -7,8 +7,10 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.ui.listeners.TestListener;
 
-@Listeners({ com.ui.listeners.TestListener.class })
+
+@Listeners({ TestListener.class })
 public class InvalidCredLoginTest extends TestBase {
 
 	Logger logger = LoggerUtility.getLogger(this.getClass());

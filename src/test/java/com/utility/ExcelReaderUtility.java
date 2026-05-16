@@ -44,10 +44,8 @@ public class ExcelReaderUtility {
 			}
 
 		} catch (InvalidFormatException e) {
-
 			e.printStackTrace();
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 		

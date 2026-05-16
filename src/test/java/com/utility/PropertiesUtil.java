@@ -1,7 +1,6 @@
 package com.utility;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -19,14 +18,9 @@ public class PropertiesUtil {
 		try {
 			fileReader = new FileReader(propFile);
 			properties.load(fileReader);
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-		String value = properties.getProperty(propertyName.toUpperCase());
-		return value;
+        return properties.getProperty(propertyName.toUpperCase());
 	}
 }

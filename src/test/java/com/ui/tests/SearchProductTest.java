@@ -6,8 +6,9 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.pages.MyAccountPage;
+import com.ui.listeners.TestListener;
 
-@Listeners({ com.ui.listeners.TestListener.class })
+@Listeners({ TestListener.class })
 
 public class SearchProductTest extends TestBase {
 
