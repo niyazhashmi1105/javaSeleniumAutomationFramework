@@ -26,6 +26,7 @@ public class ExtentReporterUtility {
 	}
 
 	public static void flushReport() {
+		extentTest.remove();
 		extentReports.flush();
 	}
 

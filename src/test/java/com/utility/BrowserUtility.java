@@ -90,10 +90,12 @@ public class BrowserUtility {
 	public BrowserUtility(Browser browserName, boolean isHeadless) {
 		logger.info("Launching Browser for " + browserName);
 
-		if (browserName == Browser.CHROME) {
+		if (browserName.toString().equalsIgnoreCase(Browser.CHROME.toString())) {
 			if (isHeadless) {
 				ChromeOptions options = new ChromeOptions();
-				options.addArguments("--headless=old"); // headless
+				options.addArguments("--headless=new");
+				options.addArguments("--no-sandbox");
+				options.addArguments("--disable-dev-shm-usage"); // headless
 				options.addArguments("--window-size=1920,1080");
 				driver.set(new ChromeDriver(options));
 				wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(30L)));
@@ -109,7 +111,7 @@ public class BrowserUtility {
 			if (isHeadless) {
 
 				EdgeOptions options = new EdgeOptions();
-				options.addArguments("--headless=old");
+				options.addArguments("--headless=new");
 				options.addArguments("disable-gpu");
 				driver.set(new EdgeDriver(options));
 				wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(30L)));
@@ -127,7 +129,7 @@ public class BrowserUtility {
 			if (isHeadless) {
 
 				FirefoxOptions options = new FirefoxOptions();
-				options.addArguments("--headless=old");
+				options.addArguments("--headless=new");
 				driver.set(new FirefoxDriver(options));
 				wait.set(new WebDriverWait(getDriver(), Duration.ofSeconds(30L)));
 
